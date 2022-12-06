@@ -2,10 +2,16 @@ body {
     margin: 0;
 }
 
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
 #main {
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    flex-grow: 1;
 }
 
 .row {
@@ -18,5 +24,20 @@ body {
 .col {
     border: solid 1px lightgray;
     flex-grow: 1;
-    aspect-ratio: 1 / 1;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    width: 100%;
+    height: 30px;
+    border: none;
+    background-color: lightsalmon;
+    color: rgb(24, 24, 24);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
 }

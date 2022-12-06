@@ -1,27 +1,44 @@
 const divMain = document.querySelector('#main');
+const btnConfig = document.querySelector('#config');
+let grid ;
+let numberSquares = 16;
 
-// genereate 15 rows
-for (let i = 0 ; i < 16 ; i++) {
+function genereteGrid(n) {
+    divMain.innerHTML = '';
 
-    let divRow = document.createElement('div');
-    divRow.className = 'row';
-    divRow.id = i;
+    // genereate 15 rows
+    for (let i = 0 ; i < n ; i++) {
 
-    // genereate 15 columns
-    for (let j = 0 ; j < 16 ; j++) {
-        let divCol = document.createElement('div');
-        divCol.className = 'col';
-        divCol.id = j;
-        divRow.appendChild(divCol);
-    }
+        let divRow = document.createElement('div');
+        divRow.className = 'row';
+        divRow.id = i;
 
-    divMain.appendChild(divRow);
+        // genereate 15 columns
+        for (let j = 0 ; j < n ; j++) {
+            let divCol = document.createElement('div');
+            divCol.className = 'col';
+            divCol.id = j;
+            divRow.appendChild(divCol);
+        }
+
+        divMain.appendChild(divRow);
+    };
+    grid = document.querySelectorAll('.col');
+    listen();
 };
 
-const grid = document.querySelectorAll('.col');
-
-grid.forEach((cell) => {
-    cell.addEventListener('mouseover', (e) => {
-        e.target.style.backgroundColor = 'black';
-    });
+function listen() {
+    grid.forEach((cell) => {
+        cell.addEventListener('mouseover', (e) => {
+            e.target.style.backgroundColor = 'black';
+        });
+    })
+}
+    
+btnConfig.addEventListener('click', (e) => {
+    numberSquares = prompt('Number of squares!');
+    genereteGrid(numberSquares);
 })
+
+genereteGrid(numberSquares);
+listen();
