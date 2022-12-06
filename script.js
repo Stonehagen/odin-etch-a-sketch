@@ -30,9 +30,42 @@ function genereteGrid(n) {
 function listen() {
     grid.forEach((cell) => {
         cell.addEventListener('mouseover', (e) => {
-            e.target.style.backgroundColor = 'black';
+            if (e.target.style.backgroundColor == "") {
+                e.target.style.backgroundColor = `#${randomValue()}${randomValue()}${randomValue()}`;
+            } else if (e.target.style.backgroundColor) {
+                e.target.style.backgroundColor = reparseToDarkerValue(e.target.style.backgroundColor)
+            }
+            
         });
-    })
+    });
+};
+
+function randomValue() {
+    return Math.floor(Math.random() * 255).toString(16);
+}
+
+function reparseToDarkerValue(rgbStr) {
+    let rgbString = rgbStr.replace('rgb', '').replace('(', '').replace(')', '');
+    let r = Math.floor(rgbString.split(',')[0].replace(' ', ''));
+    let g = Math.floor(rgbString.split(',')[1].replace(' ', ''));
+    let b = Math.floor(rgbString.split(',')[2].replace(' ', ''));
+    console.log(r)
+    r -= 25;
+    console.log(r)
+    g -= 25;
+    b -= 25;
+
+    if (r < 0) {
+        r = 0;
+    }
+    if (g < 0) {
+        g = 0;
+    }
+    if (b < 0) {
+        b = 0;
+    }
+
+    return `rgb(${r}, ${b}, ${g})`
 }
     
 btnConfig.addEventListener('click', (e) => {
